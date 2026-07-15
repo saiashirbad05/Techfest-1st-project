@@ -1,0 +1,402 @@
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.circuitOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image:
+    linear-gradient(rgba(0, 245, 255, 0.04) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 245, 255, 0.04) 2px, transparent 2px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+.radialGlow {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 50%,
+    rgba(181, 95, 230, 0.1) 0%,
+    rgba(0, 245, 255, 0.05) 45%,
+    transparent 80%
+  );
+  pointer-events: none;
+}
+
+.gridContainer {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem;
+  align-items: center;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  background: rgba(255, 140, 0, 0.06);
+  border: 2px solid var(--color-amber);
+  box-shadow: 3px 3px 0px var(--color-amber);
+  padding: 0.5rem 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-amber);
+  animation: pulse 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.festivalName {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: var(--color-cyan);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.headline {
+  font-family: var(--font-display);
+  line-height: 0.95;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.headlineTop {
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  font-weight: 900;
+  color: var(--color-white);
+  letter-spacing: 0.05em;
+  -webkit-text-stroke: 2px var(--color-cyan);
+  animation: fadeSlideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.headlineBottom {
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--color-cyan) 0%, var(--color-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.05em;
+  animation: fadeSlideUp 0.7s 0.08s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tagline {
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  animation: fadeSlideUp 0.8s 0.15s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.ctaGroup {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  animation: fadeSlideUp 0.9s 0.2s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.ctaPrimary {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #000;
+  background: var(--color-cyan);
+  border: 2px solid var(--color-cyan);
+  box-shadow: 5px 5px 0px #000;
+  padding: 1rem 2.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+  min-height: 48px;
+}
+
+.ctaPrimary:hover,
+.ctaPrimary:focus-visible {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px #000;
+  outline: none;
+}
+
+.ctaSecondary {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+  background: transparent;
+  border: 2px solid var(--color-cyan);
+  box-shadow: 5px 5px 0px var(--color-purple);
+  padding: 1rem 2.2rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ctaSecondary:hover,
+.ctaSecondary:focus-visible {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px var(--color-purple);
+  outline: none;
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeIn 1.2s 0.4s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.scrollLine {
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--color-cyan), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.8; }
+  50% { transform: scaleY(1.3); opacity: 0.3; }
+}
+
+.scrollLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+.visualContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.holoFrame {
+  position: relative;
+  width: 320px;
+  height: 380px;
+  border: 2px solid var(--color-cyan);
+  background: rgba(13, 13, 26, 0.7);
+  box-shadow: 6px 6px 0px var(--color-cyan);
+  animation: float 6s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.heroImage {
+  width: 92%;
+  height: 92%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.2) brightness(0.9);
+  mix-blend-mode: lighten;
+  opacity: 0.9;
+  transition: opacity var(--transition);
+}
+
+.holoFrame:hover .heroImage {
+  filter: contrast(1.3) brightness(1.1);
+  opacity: 1;
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 245, 255, 0) 95%,
+    rgba(0, 245, 255, 0.2) 95%,
+    rgba(0, 245, 255, 0.2) 100%
+  );
+  background-size: 100% 10px;
+  pointer-events: none;
+  z-index: 5;
+  animation: scan 6s linear infinite;
+}
+
+@keyframes scan {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+
+.holoGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 245, 255, 0.1) 0%,
+    transparent 80%
+  );
+  pointer-events: none;
+  z-index: 4;
+}
+
+.cornerTL, .cornerTR, .cornerBL, .cornerBR {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 3px solid var(--color-cyan);
+  z-index: 6;
+  pointer-events: none;
+}
+
+.cornerTL { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+.cornerTR { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+.cornerBL { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+.cornerBR { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+.techOverlay {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-cyan);
+  background: #000;
+  border: 1px solid var(--color-cyan);
+  padding: 0.2rem 0.5rem;
+  z-index: 6;
+}
+
+.sysStatus {
+  letter-spacing: 0.05em;
+}
+
+.sysTarget {
+  color: var(--color-amber);
+  animation: flash 1s ease-in-out infinite;
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@media (max-width: 1024px) {
+  .gridContainer {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2rem;
+  }
+  .holoFrame {
+    width: 280px;
+    height: 330px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 7rem 1.5rem 4rem;
+    text-align: center;
+  }
+  .textContent {
+    align-items: center;
+    text-align: center;
+  }
+  .headline {
+    align-items: center;
+  }
+  .ctaGroup {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .ctaPrimary, .ctaSecondary {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+  .visualContent {
+    order: -1;
+    margin-bottom: 1rem;
+  }
+  .holoFrame {
+    width: 250px;
+    height: 300px;
+  }
+}

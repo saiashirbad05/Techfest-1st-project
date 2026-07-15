@@ -1,0 +1,107 @@
+.stats {
+  background: var(--color-bg-secondary);
+  border-top: 2px solid var(--color-cyan);
+  border-bottom: 2px solid var(--color-cyan);
+  padding: 3rem 2rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0px; /* brutalist grid uses solid borders instead of gap gaps */
+  border: 2px solid var(--color-cyan);
+}
+
+.statItem {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-right: 2px solid var(--color-cyan);
+  background: var(--color-bg-card);
+  transition: transform var(--transition), background var(--transition);
+}
+
+.statItem:last-child {
+  border-right: none;
+}
+
+.statItem:hover {
+  transform: scale(1.02);
+  background: rgba(0, 245, 255, 0.04);
+}
+
+.statValue {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.statNumber {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  color: var(--color-cyan);
+  text-shadow: 3px 3px 0px rgba(0, 245, 255, 0.2);
+  line-height: 1;
+}
+
+.statSuffix {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  font-weight: 900;
+  color: var(--color-amber);
+}
+
+.statLabel {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-white);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.statUnit {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-text-dim);
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+    border: 2px solid var(--color-cyan);
+  }
+  .statItem {
+    border-right: 2px solid var(--color-cyan);
+    border-bottom: 2px solid var(--color-cyan);
+  }
+  .statItem:nth-child(2n) {
+    border-right: none;
+  }
+  .statItem:nth-child(3),
+  .statItem:nth-child(4) {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .statItem {
+    border-right: none !important;
+    border-bottom: 2px solid var(--color-cyan);
+  }
+  .statItem:last-child {
+    border-bottom: none;
+  }
+  .stats {
+    padding: 2rem 1rem;
+  }
+}

@@ -1,0 +1,119 @@
+/* Cyber-Brutalist CSS Variables */
+:root {
+  --color-bg: #030306;
+  --color-bg-secondary: #08080f;
+  --color-bg-card: #0d0d19;
+  --color-cyan: #00f5ff;
+  --color-amber: #ff8c00;
+  --color-purple: #b55fe6;
+  --color-white: #ffffff;
+  --color-text: #e2e8f0;
+  --color-text-dim: #64748b;
+  
+  --font-display: 'Orbitron', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  
+  /* Snappy, brutalist transition */
+  --transition: 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+  
+  /* Brutalist border/shadow system */
+  --border-width: 2px;
+  --border-cyan: var(--border-width) solid var(--color-cyan);
+  --border-purple: var(--border-width) solid var(--color-purple);
+  --border-amber: var(--border-width) solid var(--color-amber);
+  --border-dark: var(--border-width) solid #1e293b;
+  
+  --shadow-cyan: 5px 5px 0px 0px var(--color-cyan);
+  --shadow-purple: 5px 5px 0px 0px var(--color-purple);
+  --shadow-amber: 5px 5px 0px 0px var(--color-amber);
+  --shadow-black: 5px 5px 0px 0px #000000;
+  
+  --clip-corner: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-mono);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  line-height: 1.5;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Brutalist Selection */
+::selection {
+  background: var(--color-cyan);
+  color: #000;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-mono);
+}
+
+ul {
+  list-style: none;
+}
+
+/* Brutalist Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  border-left: 2px solid var(--color-cyan);
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-cyan);
+  border: 1px solid var(--color-bg);
+}
+
+/* Utility classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Glitch text effect for headlines */
+.glitchText {
+  position: relative;
+  text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+              -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+              0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
